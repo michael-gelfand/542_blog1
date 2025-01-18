@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="what-are-hyperparameters" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-hyperparameters">What are Hyperparameters</h2>
 <p>Hyperparameters are the internal configurations that control how machine learning models run. These settings can change how the model is able to generalize on unseen data through its ability to learn patterns in your training data. Each machine learning model will have a different set of hyperparameters. I don’t have enough time to go over all of them but I will cover a few that are fairly important.</p>
-<p>Learning rate is something that can be directly controlled by hyperparameters and decides the step size for when the model is trying to minimize the loss function. If your learning rate is too small, it will take too long to find the smallest loss however if your learning rate is too large, the model could overshoot the best solution or it might not find it at all. Another important hyperparameter is regularization strength, which helps limit overfitting by penalizing large weights. It’s key to choose the right value for regularization strength to find the right balance between modle performance and complexity. Another hyperparameter is class weights, which control how much importance the model gives different classes. This is especially useful in datasets where the classes are imbalanced to prevent the dominant class from overpowering the others in decision making.</p>
+<p>Learning rate is something that can be directly controlled by hyperparameters and decides the step size for when the model is trying to minimize the loss function. If your learning rate is too small, it will take too long to find the smallest loss however if your learning rate is too large, the model could overshoot the best solution or it might not find it at all. Another important hyperparameter is regularization strength, which helps limit overfitting by penalizing large weights. It’s key to choose the right value for regularization strength to find the right balance between model performance and complexity. Another hyperparameter is class weights, which control how much importance the model gives different classes. This is especially useful in datasets where the classes are imbalanced to prevent the dominant class from overpowering the others in decision making.</p>
 </section>
 <section id="finding-the-best-hyperparameters" class="level2">
 <h2 class="anchored" data-anchor-id="finding-the-best-hyperparameters">Finding the Best Hyperparameters</h2>
@@ -398,7 +398,7 @@ Table&nbsp;1: A preview of the training data showing the two explanatory variabl
 <p>Next we will need to create our random search object. Like GridSearchCV, our first two arguments are our model and our parameter distributions. We also use cv, and n_jobs again which we saw with our grid search. Our new arguments are:</p>
 <ul>
 <li>n_iter: The number of iterations to run our random search. More iterations means we are more likely to find the best value at the cost of runtime. Here we are choosing 50 iterations, so we are taking 50 combinations of hyperparameters.</li>
-<li>random_sate: This ensures that we get the same results each time as we are taking random combinations across our distributions.</li>
+<li>random_state: This ensures that we get the same results each time as we are taking random combinations across our distributions.</li>
 </ul>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize RandomizedSearchCV</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>random_search <span class="op">=</span> RandomizedSearchCV(</span>
@@ -418,9 +418,9 @@ Table&nbsp;1: A preview of the training data showing the two explanatory variabl
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>random_best_model <span class="op">=</span> random_search.best_estimator_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Output:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Random search best parameters: {</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'decisiontreeclassifier__min_samples_split'</span>: np.int64(<span class="dv">2</span>),</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'decisiontreeclassifier__min_samples_leaf'</span>: np.int64(<span class="dv">2</span>),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'decisiontreeclassifier__max_depth'</span>: np.int64(<span class="dv">17</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'decisiontreeclassifier__min_samples_split'</span>: <span class="dv">2</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'decisiontreeclassifier__min_samples_leaf'</span>: <span class="dv">2</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'decisiontreeclassifier__max_depth'</span>: <span class="dv">17</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From this, we can see that our best parameters values were:</p>
 <ul>
